@@ -1,17 +1,16 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
-import { port_app, port_DB, host_DB, database_DB, password_DB, user_DB } from "./constants.js";
 
 const app = express();
-const port = port_app;
+const port = process.env.PORT || 3000;
 
 const db = new pg.Client({
-  user: user_DB,
-  host: host_DB,
-  database: database_DB,
-  password: password_DB,
-  port: port_DB,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 db.connect();
 
